@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name - Frontend Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="nav-logo">Portfolio</a>
+      <div class="nav-menu" id="nav-menu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <button id="theme-toggle" aria-label="Toggle dark mode" class="theme-btn">
+        <span id="theme-icon">🌙</span>
+      </button>
+      <div class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="container hero-container">
+      <div class="hero-text">
+        <h1>Hi, I'm <span class="highlight">Juan Llanos</span></h1>
+        <h2>Frontend Developer</h2>
+        <p>
+          Crafting beautiful, responsive web experiences with clean code and modern design principles.
+          Passionate about creating user-friendly interfaces that make an impact and bring attention into it.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
+        <div class="social-links">
+          <a href="https://github.com/Juanda1211" target="_blank" class="social-link" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/juan-llanos-59b951247/" target="_blank" class="social-link" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="mailto:juandayclau1211@hotmail.com" class="social-link" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="images/profileIMG.jpeg" alt="Your Name" class="profile-img" />
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <div>
+          <p>
+            "I’m an aspiring frontend developer who has been learning since July, driven by a strong passion for design and writing clean, 
+            efficient code. I’m gaining experience with modern web technologies and building responsive, user-friendly applications. As a committed learner, 
+            I’m dedicated to continuously expanding my skills by exploring new programming languages and web development tools. Outside of coding, 
+            I enjoy discovering emerging tech, contributing to open source projects, and sharing knowledge with the community."  
+          </p>
+          <p>
+            Outside development, I enjoy exploring new tech, contributing to open source, and sharing knowledge.
+          </p>
+        </div>
+        <div class="skills">
+          <h3>Skills & Technologies</h3>
+          <div class="skills-grid">
+            <div class="skill-item"><i class="fab fa-html5"></i> HTML5</div>
+            <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+            <div class="skill-item"><i class="fab fa-js-square"></i> JavaScript</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid" id="projects-container">
+        <p class="loading-text">Loading GitHub projects...</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <form id="contact-form" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">&copy; 2025 Your Name. All rights reserved.</div>
+  </footer>
+</body>
+</html>
