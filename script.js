@@ -95,7 +95,7 @@ function renderSelectedProjects(allRepos, selectedNames, containerId = 'projects
   container.innerHTML = filteredRepos.map(repo => {
     return `
       <div class="project-card">
-        <h3 class="project-title">${repo.name.toUpperCase()}</h3>
+        <h3 class="project-title">${repo.name}</h3>
         <p class="project-description">${repo.description || ''}</p>
         <p><strong>Language:</strong> ${repo.language || 'Other'}</p>
         <div class="project-links">
