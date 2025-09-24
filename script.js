@@ -63,7 +63,7 @@ themeToggle.addEventListener('click', () => {
 });
 
 // --- GITHUB PROJECTS FILTERED BY SELECTED LIST ---
-const selectedRepos = ['tempConverter', 'dailyTaskCalendar', 'calculadora']; // projects i want to be shown
+const selectedRepos = ['tempConverter', 'dailyTaskCalendar', 'calculadora']; 
 const githubUsername = 'juanda1211'; // Replace with your GitHub username
 
 async function fetchGitHubRepos(username) {
