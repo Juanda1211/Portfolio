@@ -15,6 +15,7 @@ navLinks.forEach(link =>
     hamburger.setAttribute('aria-expanded', 'false');
   })
 );
+//help modifying several parts in css at the same time that have section as an identifier in their class.
 
 const sections = document.querySelectorAll('section');
 window.addEventListener('scroll', () => {
@@ -55,6 +56,7 @@ function setTheme(dark) {
     setTheme(prefersDark);
   }
 })();
+//create an action in the upper section of portafolio that from a boolean , let change between dark and light mode .
 
 themeToggle.addEventListener('click', () => {
   const isDark = document.body.classList.toggle('dark-mode');
@@ -64,7 +66,7 @@ themeToggle.addEventListener('click', () => {
 
 // --- GITHUB PROJECTS FILTERED BY SELECTED LIST ---
 const selectedRepos = ['tempConverter', 'dailyTaskCalendar', 'calculator']; //selected repos to be shown
-const githubUsername = 'juanda1211'; // Replace with your GitHub username
+const githubUsername = 'juanda1211'; // GitHub username
 
 async function fetchGitHubRepos(username) {
   const apiUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
@@ -121,3 +123,5 @@ contactForm.addEventListener('submit', e => {
   alert('Thank you for your message! (Form submission not configured)');
   contactForm.reset();
 });
+
+
