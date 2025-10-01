@@ -101,10 +101,13 @@
   <section id="contact" class="contact">
     <div class="container">
       <h2 class="section-title">Get In Touch</h2>
-      <form id="contact-form" class="contact-form">
+      <form id="contact-form" class="contact-form" action="https://formsubmit.co/juandayclau1211@hotmail.com" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <input type="hidden" name="_subject" value="new message from your portfolio webpage">
+        <input type="hidden" name="_next" value="https://juanda1211.github.io/portfolio/thanks.html">
+        <input type="hidden" name="_captcha" value="false">
         <button type="submit" class="btn btn-primary">Send Message</button>
       </form>
     </div>

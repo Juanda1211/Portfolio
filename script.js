@@ -119,9 +119,9 @@ document.addEventListener('DOMContentLoaded', loadSelectedGitHubProjects);
 // --- CONTACT FORM ---
 const contactForm = document.getElementById('contact-form');
 contactForm.addEventListener('submit', e => {
-  e.preventDefault();
-  alert('Thank you for your message! (Form submission not configured)');
-  contactForm.reset();
+  const button = contactForm.querySelector('button[type="submit"]');
+  button.disabled = true;
+  button.innerHTML = 'sending...';
 });
 
 
