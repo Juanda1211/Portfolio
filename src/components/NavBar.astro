@@ -23,16 +23,10 @@
           Contact
         </a>
         
-        <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
-          <span id="theme-icon" class="text-2xl"></span>
-        </button>
       </div>
 
       <!-- Mobile Menu Button -->
       <div class="md:hidden flex items-center space-x-2">
-        <button id="theme-toggle-mobile" aria-label="Toggle dark mode" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
-          <span id="theme-icon-mobile" class="text-xl"></span>
-        </button>
         <button id="hamburger" aria-label="Toggle menu" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
           <div class="w-6 h-5 flex flex-col justify-between">
             <span class="w-full h-0.5 bg-gray-700 dark:bg-gray-300 transition-all hamburger-bar"></span>
@@ -64,40 +58,6 @@
 </nav>
 
 <script>
-  function initTheme() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-    const themeIcon = document.getElementById('theme-icon');
-    const themeIconMobile = document.getElementById('theme-icon-mobile');
-    const html = document.documentElement;
-
-    function updateThemeIcon() {
-      const isDark = html.classList.contains('dark');
-      const icon = isDark ? '☀️' : '🌙';
-      if (themeIcon) themeIcon.textContent = icon;
-      if (themeIconMobile) themeIconMobile.textContent = icon;
-    }
-
-    function toggleTheme() {
-      const isDark = html.classList.contains('dark');
-      
-      if (isDark) {
-        html.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      } else {
-        html.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-      
-      updateThemeIcon();
-    }
-
-    themeToggle?.addEventListener('click', toggleTheme);
-    themeToggleMobile?.addEventListener('click', toggleTheme);
-    
-    updateThemeIcon();
-  }
-
   function initHamburger() {
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -114,11 +74,9 @@
     });
   }
 
-  initTheme();
   initHamburger();
 
   document.addEventListener('astro:page-load', () => {
-    initTheme();
     initHamburger();
   });
 </script>
