@@ -1,7 +1,7 @@
 ---
 
+import Layout from "../layouts/Layouts.astro";
 import Navbar from '../components/NavBar.astro';
-import "../styles/global.css";
 interface Project {
   name: string;
   description: string;
@@ -41,10 +41,11 @@ const projects: Project[] = [
   }
 ];
 ---
-<nav>
-  <Navbar />
-</nav>
-<section id="projects" class="py-20 bg-white dark:bg-gray-900">
+<Layout title="Projects — Juan Llanos">
+  <nav>
+    <Navbar />
+  </nav>
+  <section id="projects" class="py-20 bg-white dark:bg-gray-900">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center justify-between mb-6 mt-30 ">
       <h2 class="text-3xl sm:text-4xl font-bold text-primary-600 dark:text-white mb-20">
@@ -100,7 +101,8 @@ const projects: Project[] = [
       ))}
     </div>
   </div>
-</section>
+  </section>
+</Layout>
 
  
 
