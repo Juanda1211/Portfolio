@@ -1,0 +1,124 @@
+---
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="text-xl font-bold text-primary-600 dark:text-white hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
+        Juan Llanos
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8  font-bold text-xl">
+        <a href="/" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
+          Home
+        </a>
+        <a href="/about" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
+          About
+        </a>
+        <a href="/project" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
+          Projects
+        </a>
+        <a href="/contact" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
+          Contact
+        </a>
+        
+        <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+          <span id="theme-icon" class="text-2xl"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center space-x-2">
+        <button id="theme-toggle-mobile" aria-label="Toggle dark mode" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+          <span id="theme-icon-mobile" class="text-xl"></span>
+        </button>
+        <button id="hamburger" aria-label="Toggle menu" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+          <div class="w-6 h-5 flex flex-col justify-between">
+            <span class="w-full h-0.5 bg-gray-700 dark:bg-gray-300 transition-all hamburger-bar"></span>
+            <span class="w-full h-0.5 bg-gray-700 dark:bg-gray-300 transition-all hamburger-bar"></span>
+            <span class="w-full h-0.5 bg-gray-700 dark:bg-gray-300 transition-all hamburger-bar"></span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden pb-4">
+      <div class="flex flex-col space-y-3">
+        <a href="#home" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
+          Home
+        </a>
+        <a href="#about" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
+          About
+        </a>
+        <a href="#projects" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
+          Projects
+        </a>
+        <a href="#contact" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
+          Contact
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  function initTheme() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeIconMobile = document.getElementById('theme-icon-mobile');
+    const html = document.documentElement;
+
+    function updateThemeIcon() {
+      const isDark = html.classList.contains('dark');
+      const icon = isDark ? '☀️' : '🌙';
+      if (themeIcon) themeIcon.textContent = icon;
+      if (themeIconMobile) themeIconMobile.textContent = icon;
+    }
+
+    function toggleTheme() {
+      const isDark = html.classList.contains('dark');
+      
+      if (isDark) {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      
+      updateThemeIcon();
+    }
+
+    themeToggle?.addEventListener('click', toggleTheme);
+    themeToggleMobile?.addEventListener('click', toggleTheme);
+    
+    updateThemeIcon();
+  }
+
+  function initHamburger() {
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinksMobile = document.querySelectorAll('.nav-link-mobile');
+
+    hamburger?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('hidden');
+    });
+
+    navLinksMobile.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu?.classList.add('hidden');
+      });
+    });
+  }
+
+  initTheme();
+  initHamburger();
+
+  document.addEventListener('astro:page-load', () => {
+    initTheme();
+    initHamburger();
+  });
+</script>

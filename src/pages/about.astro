@@ -1,0 +1,61 @@
+---
+// Importa el ícono SVG de Astro como un componente
+import AstroIcon from '../assets/AstroIcon.svg?raw';
+import HtmlIcon from '../assets/HtmlIcon.svg?raw';
+import Css3Icon from '../assets/Css3Icon.svg?raw';
+import JavascriptIcon from '../assets/JavascriptIcon.svg?raw';
+import "../styles/global.css";
+import NavBar from '../components/NavBar.astro';
+
+
+const skills = [
+  { icon: HtmlIcon, name: 'HTML5', isSvg: true },
+  { icon: Css3Icon, name: 'CSS3', isSvg: true },
+  { icon: JavascriptIcon, name: 'JavaScript', isSvg: true },
+  { icon: AstroIcon, name: 'Astro', isSvg: true },
+];
+---
+<NavBar/>
+<section id="about" class="py-20 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-primary-600 dark:text-white">
+      About Me
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+
+      <div class="space-y-6">
+        <p class="text-gray-700 dark:text-white leading-relaxed">
+          As an Electronics Engineering student at Universidad del Magdalena, I have been learning about frontend development technologies since late July 2025,like HTML,CSS, and javascript, also trying some frameworks like Astro,Tailwindcss and React.js. I try to focus on creating responsive, user-friendly applications that deliver seamless experiences.
+        </p>
+        <p class="text-gray-700 dark:text-white leading-relaxed">
+          As a committed learner, I'm dedicated to continuously expanding my skills by exploring new programming languages and web development tools. 
+          Outside of coding, I enjoy discovering emerging tech.
+        </p>
+      </div>
+
+
+      <div>
+        <h3 class="text-2xl font-semibold mb-6 dark:text-white">Skills & Technologies</h3>
+        <div class="grid grid-cols-2 gap-4">
+          {skills.map(skill => (
+            <div class="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition-shadow">
+              {skill.isSvg ? (
+                
+                <div 
+                  class="w-6 h-6 text-primary-600 dark:text-white" 
+                  style={{ fill: 'currentColor' }} 
+                  set:html={skill.icon} 
+                />
+              ) : (
+              
+                <i class={`${skill.icon} text-2xl text-primary-600 dark:text-white`}></i>
+              )}
+              <span class="font-medium dark:text-white">{skill.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

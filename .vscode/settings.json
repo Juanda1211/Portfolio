@@ -1,0 +1,20 @@
+{
+  "tailwindCSS.includeLanguages": {
+    "astro": "html"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "css.lint.unknownAtRules": "ignore",
+  "editor.colorDecorators": true,
+  "editor.defaultColorDecorators": "always",
+  "tailwindCSS.experimental.configFile": "tailwind.config.mjs",
+  "tailwindCSS.experimental.classRegex": [
+    ["class:list\\s*=\\s*{([^}]*)}", "[\\'\\\"](.*?)[\\'\\\"]"],
+    ["class=\"([^\"]*)\"", "([a-zA-Z0-9\\-:]+)"]
+  ],
+  "tailwindCSS.colorDecorators": true
+}
