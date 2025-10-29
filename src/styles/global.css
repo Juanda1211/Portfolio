@@ -3,3 +3,7 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  @apply dark:bg-gray-900;
+}
