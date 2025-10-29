@@ -47,8 +47,8 @@ const projects: Project[] = [
   </nav>
   <section id="projects" class="py-20 bg-white dark:bg-gray-900">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center justify-between mb-6 mt-30 ">
-      <h2 class="text-3xl sm:text-4xl font-bold text-primary-600 dark:text-white mb-20">
+    <div class="text-center justify-between mb-6 mt-20 ">
+      <h2 class="text-3xl sm:text-4xl font-bold text-primary-600 dark:text-white mb-20 ">
         Some Projects
       </h2>
 
@@ -68,7 +68,7 @@ const projects: Project[] = [
           {project.technologies.length > 0 && (
             <div class="flex flex-wrap gap-2 mb-4 ml-5">
               {project.technologies.map((tech) => (
-                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-white rounded-full text-sm ">
+                <span class="px-2 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-white rounded-full text-sm ">
                   {tech}
                 </span>
               ))}
