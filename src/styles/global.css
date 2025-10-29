@@ -1,9 +1,11 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import "tailwindcss";
-
-@custom-variant dark (&:where(.dark, .dark *));
-
+/* Basic global styles */
+html, body {
+  height: 100%;
+}
 body {
-  @apply dark:bg-gray-900;
+  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
 }
