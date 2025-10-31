@@ -1,6 +1,6 @@
 ---
-import Layout from "../layouts/Layouts.astro";
-import NavBar from '../components/NavBar.astro';
+import Layout from "../../layouts/Layouts.astro";
+import NavBar from '../../components/NavBar.astro';
 ---
 ---
 <Layout title="Contact — Juan Llanos">
@@ -8,7 +8,7 @@ import NavBar from '../components/NavBar.astro';
   <section id="contact" class="py-20 bg-white dark:bg-gray-900">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-20">
     <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-primary-600 dark:text-white mb-20">
-      Contáctame
+      Get In Touch
     </h2>
 
     <form 
@@ -21,7 +21,7 @@ import NavBar from '../components/NavBar.astro';
         <input 
           type="text" 
           name="name" 
-          placeholder="Tu nombre" 
+          placeholder="Your Name" 
           required 
           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
         />
@@ -31,7 +31,7 @@ import NavBar from '../components/NavBar.astro';
         <input 
           type="email" 
           name="email" 
-          placeholder="Tu correo electrónico" 
+          placeholder="Your Email" 
           required 
           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
         />
@@ -41,13 +41,13 @@ import NavBar from '../components/NavBar.astro';
         <textarea 
           name="message" 
           rows="5" 
-          placeholder="Tu mensaje" 
+          placeholder="Your Message" 
           required 
           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all resize-none"
         ></textarea>
       </div>
 
-  <input type="hidden" name="_subject" value="Nuevo mensaje desde mi portafolio" />
+      <input type="hidden" name="_subject" value="New message from your portfolio webpage" />
       <input type="hidden" name="_next" value="https://juanda1211.github.io/portfolio/thanks.html" />
       <input type="hidden" name="_captcha" value="false" />
 
@@ -55,7 +55,7 @@ import NavBar from '../components/NavBar.astro';
         type="submit" 
         class="w-full px-6 py-3 bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 text-white rounded-lg font-semibold transition-colors shadow-lg hover:shadow-xl hover:cursor-pointer"
       >
-        Enviar mensaje
+        Send Message
       </button>
     </form>
   </div>

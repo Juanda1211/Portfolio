@@ -9,20 +9,25 @@
       </a>
 
       <!-- Desktop Menu -->
-      <div class="hidden md:flex items-center space-x-8  font-bold text-xl">
-        <a href="/" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
-          Home
-        </a>
-        <a href="/about" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
-          About
-        </a>
-        <a href="/project" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
-          Projects
-        </a>
-        <a href="/contact" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
-          Contact
-        </a>
-        
+      <div class="hidden md:flex items-center space-x-4 font-bold text-xl">
+        <div class="flex items-center space-x-8">
+          <a href="/" data-base-href="/" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
+            Inicio
+          </a>
+          <a href="/about" data-base-href="/about" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
+            Acerca
+          </a>
+          <a href="/project" data-base-href="/project" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
+            Proyectos
+          </a>
+          <a href="/contact" data-base-href="/contact" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
+            Contacto
+          </a>
+        </div>
+        <!-- Language toggle button -->
+        <div class="flex items-center space-x-2">
+          <button id="lang-toggle" class="ml-2 px-3 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-sm font-medium">EN</button>
+        </div>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -38,45 +43,27 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden pb-4">
+      <div id="mobile-menu" class="hidden md:hidden pb-4">
       <div class="flex flex-col space-y-3">
-        <a href="#home" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
+        <a href="#home" data-base-href="/" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
           Home
         </a>
-        <a href="#about" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
+        <a href="#about" data-base-href="/about" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
           About
         </a>
-        <a href="#projects" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
+        <a href="#projects" data-base-href="/project" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
           Projects
         </a>
-        <a href="#contact" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
+        <a href="#contact" data-base-href="/contact" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
           Contact
         </a>
+        <div class="mt-2 flex flex-col space-y-2">
+          <button id="lang-toggle-mobile" class="px-3 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-sm font-medium">EN</button>
+        </div>
       </div>
     </div>
   </div>
-</nav>
+  </nav>
 
-<script>
-  function initHamburger() {
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navLinksMobile = document.querySelectorAll('.nav-link-mobile');
-
-    hamburger?.addEventListener('click', () => {
-      mobileMenu?.classList.toggle('hidden');
-    });
-
-    navLinksMobile.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu?.classList.add('hidden');
-      });
-    });
-  }
-
-  initHamburger();
-
-  document.addEventListener('astro:page-load', () => {
-    initHamburger();
-  });
-</script>
+  <!-- Load navbar client script from public to avoid inline TS checks -->
+  <script type="module" src="/scripts/navbar.js"></script>
