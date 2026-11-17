@@ -48,7 +48,6 @@ export const projectsEs: Project[] = [
     image: '/PortalAcademicoJava.webp',
     imageAlt: 'Vista previa del Portal Académico',
     liveUrl: 'https://portal-academico-demo.onrender.com/index.html',
-   
   },
 ];
 
