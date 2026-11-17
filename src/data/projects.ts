@@ -5,7 +5,7 @@ export interface Project {
   image?: string;
   imageAlt: string;
   liveUrl?: string;
-  badge?: string;
+
 }
 
 export const projectsEs: Project[] = [
@@ -48,7 +48,7 @@ export const projectsEs: Project[] = [
     image: '/PortalAcademicoJava.webp',
     imageAlt: 'Vista previa del Portal Académico',
     liveUrl: 'https://portal-academico-demo.onrender.com/index.html',
-    badge: 'Universidad del Magdalena',
+   
   },
 ];
 
@@ -92,6 +92,5 @@ export const projectsEn: Project[] = [
     image: '/PortalAcademicoJava.webp',
     imageAlt: 'Preview of the Academic Portal',
     liveUrl: 'https://portal-academico-demo.onrender.com/index.html',
-    badge: 'Universidad del Magdalena',
   },
 ];
