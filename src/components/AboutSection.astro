@@ -1,0 +1,49 @@
+---
+import AstroIcon from '../assets/AstroIcon.svg?raw';
+import HtmlIcon from '../assets/HtmlIcon.svg?raw';
+import Css3Icon from '../assets/Css3Icon.svg?raw';
+import JavascriptIcon from '../assets/JavascriptIcon.svg?raw';
+import JavaIcon from '../assets/JavaIcon.svg?raw';
+import { content, type Lang } from '../data/content';
+
+const { lang = 'es' } = Astro.props as { lang?: Lang };
+const t = content[lang].about;
+
+const skills = [
+  { icon: HtmlIcon, name: 'HTML5' },
+  { icon: Css3Icon, name: 'CSS3' },
+  { icon: JavascriptIcon, name: 'JavaScript' },
+  { icon: JavaIcon, name: 'Java' },
+  { icon: AstroIcon, name: 'Astro' },
+];
+---
+
+<main id="about" class="pb-24 pt-32 md:pt-40">
+  <div class="wrap">
+    <h1 data-enter class="text-balance text-4xl font-semibold tracking-[-0.03em] sm:text-6xl">{t.title}</h1>
+
+    <div class="mt-14 grid gap-14 md:grid-cols-[1.3fr_1fr] md:gap-20">
+      <div class="max-w-[62ch] space-y-6 text-lg leading-relaxed text-muted">
+        <p data-enter style="--i: 1" class="text-pretty">{t.p1}</p>
+        <p data-enter style="--i: 2" class="text-pretty">{t.p2}</p>
+      </div>
+
+      <section data-enter style="--i: 3" aria-labelledby="skills-title">
+        <h2 id="skills-title" class="mb-6 text-xl font-semibold tracking-tight">{t.skills}</h2>
+        <ul class="divide-y divide-line border-y border-line">
+          {skills.map((skill) => (
+            <li class="group flex items-center gap-4 py-4 transition-colors">
+              <span
+                class="h-6 w-6 shrink-0 text-muted transition-colors duration-300 group-hover:text-accent [&>svg]:h-full [&>svg]:w-full"
+                style="fill: currentColor"
+                aria-hidden="true"
+                set:html={skill.icon}
+              />
+              <span class="font-medium">{skill.name}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </div>
+</main>

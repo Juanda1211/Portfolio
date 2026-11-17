@@ -1,0 +1,64 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  linkLabel: string;
+  noLinkLabel: string;
+}
+
+const { project, linkLabel, noLinkLabel } = Astro.props;
+---
+
+<article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-colors duration-300 hover:border-muted focus-within:border-accent">
+  <div class="relative aspect-video overflow-hidden bg-accent-soft">
+    {project.image ? (
+      <img
+        src={project.image}
+        alt={project.imageAlt}
+        width="1920"
+        height="1080"
+        loading="lazy"
+        decoding="async"
+        class="h-full w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+      />
+    ) : (
+      <div class="grid h-full w-full place-items-center text-accent" role="img" aria-label={project.imageAlt}>
+        <span class="text-5xl font-semibold tracking-tight" aria-hidden="true">Java</span>
+      </div>
+    )}
+    {project.badge && (
+      <span class="absolute left-3 top-3 rounded-full border border-line bg-bg px-3 py-1 text-xs font-medium text-fg">
+        {project.badge}
+      </span>
+    )}
+  </div>
+
+  <div class="flex grow flex-col p-6">
+    <h3 class="mb-2 text-balance text-xl font-semibold tracking-tight">{project.name}</h3>
+    <p class="mb-5 grow text-pretty text-muted">{project.description}</p>
+
+    <ul class="mb-6 flex flex-wrap gap-2">
+      {project.technologies.map((tech) => (
+        <li class="rounded-full bg-accent-soft px-3 py-1 text-xs font-medium text-accent">{tech}</li>
+      ))}
+    </ul>
+
+    {project.liveUrl ? (
+      <a
+        href={project.liveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 border-t border-line pt-4 text-sm font-medium after:absolute after:inset-0 after:content-[''] focus:outline-none"
+      >
+        <span>{linkLabel}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17 17 7" />
+          <path d="M8 7h9v9" />
+        </svg>
+      </a>
+    ) : (
+      <p class="border-t border-line pt-4 text-sm text-muted">{noLinkLabel}</p>
+    )}
+  </div>
+</article>

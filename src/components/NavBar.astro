@@ -1,69 +1,110 @@
 ---
+import { content, type Lang } from '../data/content';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = content[lang];
+const other = content[lang === 'es' ? 'en' : 'es'];
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const basePath = path.replace(/^\/en(?=\/|$)/, '') || '/';
+const href = (p: string) => (t.prefix + (p === '/' ? '' : p)) || '/';
+const switchHref = (other.prefix + (basePath === '/' ? '' : basePath)) || '/';
+
+const links = [
+  { path: '/', label: t.nav.home },
+  { path: '/about', label: t.nav.about },
+  { path: '/project', label: t.nav.projects },
+  { path: '/contact', label: t.nav.contact },
+];
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <a href="/" class="text-xl font-bold text-primary-600 dark:text-white hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
-        Juan Llanos
+<header class="site-nav fixed inset-x-0 top-0 z-50">
+  <div class="wrap flex h-16 items-center justify-between">
+    <a href={href('/')} class="text-base font-semibold tracking-tight">Juan Llanos</a>
+
+    <nav aria-label={t.nav.primary} class="hidden items-center gap-8 text-sm md:flex">
+      {links.map((l) => (
+        <a
+          href={href(l.path)}
+          class="link-u text-muted transition-colors hover:text-fg aria-[current=page]:text-fg"
+          aria-current={basePath === l.path ? 'page' : undefined}
+        >
+          {l.label}
+        </a>
+      ))}
+      <a
+        href={switchHref}
+        hreflang={other.htmlLang}
+        lang={other.htmlLang}
+        aria-label={t.otherLangName}
+        class="rounded-full border border-line px-3 py-1 text-xs font-medium transition-colors hover:border-fg"
+      >
+        {t.otherLangLabel}
       </a>
+    </nav>
 
-      <!-- Desktop Menu -->
-      <div class="hidden md:flex items-center space-x-4 font-bold text-xl">
-        <div class="flex items-center space-x-8">
-          <a href="/" data-base-href="/" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
-            Inicio
-          </a>
-          <a href="/about" data-base-href="/about" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
-            Acerca
-          </a>
-          <a href="/project" data-base-href="/project" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
-            Proyectos
-          </a>
-          <a href="/contact" data-base-href="/contact" class="nav-link text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors hover:border-b-2 hover:border-primary-600 dark:hover:border-primary-400 hover:scale-105">
-            Contacto
-          </a>
-        </div>
-        <!-- Language toggle button -->
-        <div class="flex items-center space-x-2">
-          <button id="lang-toggle" class="ml-2 px-3 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-sm font-medium">EN</button>
-        </div>
-      </div>
-
-      <!-- Mobile Menu Button -->
-      <div class="md:hidden flex items-center space-x-2">
-        <button id="hamburger" aria-label="Toggle menu" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
-          <div class="w-6 h-5 flex flex-col justify-between">
-            <span class="w-full h-0.5 bg-gray-700 dark:bg-gray-300 transition-all hamburger-bar"></span>
-            <span class="w-full h-0.5 bg-gray-700 dark:bg-gray-300 transition-all hamburger-bar"></span>
-            <span class="w-full h-0.5 bg-gray-700 dark:bg-gray-300 transition-all hamburger-bar"></span>
-          </div>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden md:hidden pb-4">
-      <div class="flex flex-col space-y-3">
-        <a href="#home" data-base-href="/" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
-          Home
-        </a>
-        <a href="#about" data-base-href="/about" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
-          About
-        </a>
-        <a href="#projects" data-base-href="/project" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
-          Projects
-        </a>
-        <a href="#contact" data-base-href="/contact" class="nav-link-mobile text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors px-2 py-1">
-          Contact
-        </a>
-        <div class="mt-2 flex flex-col space-y-2">
-          <button id="lang-toggle-mobile" class="px-3 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-sm font-medium">EN</button>
-        </div>
-      </div>
-    </div>
+    <button
+      id="menu-button"
+      type="button"
+      aria-label={t.nav.menu}
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      class="-mr-2 grid h-11 w-11 place-items-center rounded-full md:hidden"
+    >
+      <span class="relative block h-3 w-6">
+        <span class="bar absolute inset-x-0 top-0 h-px bg-current transition-transform duration-300"></span>
+        <span class="bar absolute inset-x-0 bottom-0 h-px bg-current transition-transform duration-300"></span>
+      </span>
+    </button>
   </div>
-  </nav>
 
-  <!-- Load navbar client script from public to avoid inline TS checks -->
-  <script type="module" src="/scripts/navbar.js"></script>
+  <nav id="mobile-menu" aria-label={t.nav.primary} hidden class="border-t border-line bg-bg md:hidden">
+    <div class="wrap flex flex-col py-4">
+      {links.map((l) => (
+        <a
+          href={href(l.path)}
+          class="py-3 text-lg text-muted aria-[current=page]:text-fg"
+          aria-current={basePath === l.path ? 'page' : undefined}
+        >
+          {l.label}
+        </a>
+      ))}
+      <a href={switchHref} hreflang={other.htmlLang} lang={other.htmlLang} class="py-3 text-lg text-muted">
+        {t.otherLangName}
+      </a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  #menu-button[aria-expanded='true'] .bar:first-child {
+    transform: translateY(5.5px) rotate(45deg);
+  }
+  #menu-button[aria-expanded='true'] .bar:last-child {
+    transform: translateY(-5.5px) rotate(-45deg);
+  }
+</style>
+
+<script>
+  const button = document.getElementById('menu-button');
+  const menu = document.getElementById('mobile-menu');
+
+  function setOpen(open: boolean) {
+    button?.setAttribute('aria-expanded', String(open));
+    if (menu) menu.hidden = !open;
+  }
+
+  button?.addEventListener('click', () => {
+    setOpen(button.getAttribute('aria-expanded') !== 'true');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+  window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => {
+    if (e.matches) setOpen(false);
+  });
+</script>

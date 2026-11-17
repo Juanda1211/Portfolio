@@ -1,0 +1,21 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import { content, type Lang } from '../data/content';
+import { projectsEn, projectsEs } from '../data/projects';
+
+const { lang = 'es' } = Astro.props as { lang?: Lang };
+const t = content[lang].projects;
+const projects = lang === 'es' ? projectsEs : projectsEn;
+---
+
+<main id="projects" class="pb-24 pt-32 md:pt-40">
+  <div class="wrap">
+    <h1 data-enter class="text-balance text-4xl font-semibold tracking-[-0.03em] sm:text-6xl">{t.title}</h1>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {projects.map((project) => (
+        <ProjectCard project={project} linkLabel={t.link} noLinkLabel={t.noLink} />
+      ))}
+    </div>
+  </div>
+</main>

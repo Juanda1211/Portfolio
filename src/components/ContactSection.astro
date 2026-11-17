@@ -1,0 +1,84 @@
+---
+import { content, type Lang } from '../data/content';
+
+const { lang = 'es' } = Astro.props as { lang?: Lang };
+const t = content[lang].contact;
+---
+
+<main id="contact" class="pb-24 pt-32 md:pt-40">
+  <div class="wrap">
+    <h1 data-enter class="text-balance text-4xl font-semibold tracking-[-0.03em] sm:text-6xl">{t.title}</h1>
+
+    <form
+      id="contact-form"
+      action="https://formsubmit.co/juandayclau1211@hotmail.com"
+      method="POST"
+      data-sending={t.sending}
+      data-sent={t.sent}
+      data-failed={t.failed}
+      data-enter
+      style="--i: 1"
+      class="mt-14 max-w-2xl space-y-6"
+    >
+      <div>
+        <label for="name" class="mb-2 block text-sm font-medium">{t.name}</label>
+        <input id="name" type="text" name="name" autocomplete="name" required class="field" />
+      </div>
+
+      <div>
+        <label for="email" class="mb-2 block text-sm font-medium">{t.email}</label>
+        <input id="email" type="email" name="email" autocomplete="email" required class="field" />
+      </div>
+
+      <div>
+        <label for="message" class="mb-2 block text-sm font-medium">{t.message}</label>
+        <textarea id="message" name="message" rows="6" required class="field resize-none"></textarea>
+      </div>
+
+      <input type="hidden" name="_subject" value={t.subject} />
+      <input type="hidden" name="_next" value="https://juanda1211.github.io/portfolio/thanks.html" />
+      <input type="hidden" name="_captcha" value="false" />
+
+      <button type="submit" class="btn btn-primary w-full cursor-pointer data-[state=sent]:!bg-accent data-[state=sent]:!text-accent-contrast data-[state=failed]:!bg-red-700 data-[state=failed]:!text-white disabled:cursor-default">
+        {t.send}
+      </button>
+      <p id="form-status" role="status" class="sr-only"></p>
+    </form>
+  </div>
+</main>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+  const button = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+  if (form && button) {
+    const label = button.textContent?.trim() ?? '';
+
+    const show = (state: 'sending' | 'sent' | 'failed' | 'idle', text: string) => {
+      button.textContent = text;
+      button.dataset.state = state;
+      button.disabled = state === 'sending' || state === 'sent';
+      if (status && state !== 'idle') status.textContent = text;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      show('sending', form.dataset.sending ?? '');
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        show('sent', form.dataset.sent ?? '');
+      } catch (error) {
+        console.warn('Contact form submission failed', error);
+        show('failed', form.dataset.failed ?? '');
+        setTimeout(() => show('idle', label), 2500);
+      }
+    });
+  }
+</script>
