@@ -43,10 +43,11 @@ export const projectsEs: Project[] = [
   },
   {
     name: 'Portal Académico',
-    description: 'Proyecto universitario para la Universidad del Magdalena. Frontend con HTML, CSS y JavaScript y backend en Java con arquitectura por capas.',
+    description: 'Proyecto universitario. Frontend con HTML, CSS y JavaScript y backend en Java con arquitectura por capas.',
     technologies: ['Java', 'HTML', 'CSS', 'JavaScript'],
     image: '/PortalAcademicoJava.webp',
     imageAlt: 'Vista previa del Portal Académico',
+    liveUrl: 'https://portal-academico-demo.onrender.com/index.html',
     badge: 'Universidad del Magdalena',
   },
 ];
@@ -86,10 +87,11 @@ export const projectsEn: Project[] = [
   },
   {
     name: 'Academic Portal',
-    description: 'University project for Universidad del Magdalena. Frontend with HTML, CSS and JavaScript and a Java backend with a layered architecture.',
+    description: 'University project. Frontend with HTML, CSS and JavaScript and a Java backend with a layered architecture.',
     technologies: ['Java', 'HTML', 'CSS', 'JavaScript'],
     image: '/PortalAcademicoJava.webp',
     imageAlt: 'Preview of the Academic Portal',
+    liveUrl: 'https://portal-academico-demo.onrender.com/index.html',
     badge: 'Universidad del Magdalena',
   },
 ];
